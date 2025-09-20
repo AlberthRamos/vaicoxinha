@@ -1,0 +1,34 @@
+{
+  "name": "vai-coxinha-backend",
+  "version": "1.0.0",
+  "description": "Backend do Vai Coxinha - App de delivery de coxinhas",
+  "main": "src/app.js",
+  "scripts": {
+    "dev": "nodemon src/app.js",
+    "start": "node src/app.js",
+    "seed": "node src/utils/seed.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "mercadopago": "^1.5.17",
+    "express-rate-limit": "^6.10.0",
+    "helmet": "^7.0.0",
+    "express-validator": "^7.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "delivery",
+    "coxinha",
+    "food",
+    "pwa"
+  ],
+  "author": "Vai Coxinha",
+  "license": "MIT"
+}
