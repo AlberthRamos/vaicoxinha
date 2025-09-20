@@ -1,7 +1,6 @@
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
-const rateLimit = require('express-rate-limit');
 const dotenv = require('dotenv');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const amqp = require('amqplib');
@@ -14,8 +13,7 @@ app.use(helmet());
 app.use(express.json());
 app.use(cors({ origin: process.env.FRONTEND_URL || '*', credentials: true }));
 
-const limiter = rateLimit({ windowMs: 1 * 60 * 1000, max: 120 });
-app.use(limiter);
+// Rate limiting opcional (desativado no BFF para simplificar build em contêiner)
 
 const targetProducts = process.env.SERVICES_PRODUCTS_URL || 'http://localhost:4001';
 const targetOrders = process.env.SERVICES_ORDERS_URL || 'http://localhost:4002';
