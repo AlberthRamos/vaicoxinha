@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import 'antd/dist/reset.css';
+import { Watermark } from 'antd';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +29,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${geistSans.variable} ${geistMono.variable}`} style={{ background: '#FFF3E0' }}>
-        {children}
+        <Watermark content="Vai Coxinha · vaicoxinha.shop" gap={[120, 120]}>
+          {children}
+        </Watermark>
       </body>
     </html>
   );
