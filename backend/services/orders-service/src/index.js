@@ -53,6 +53,14 @@ async function publishEvent(event, payload) {
 
 app.get('/health', (_req, res) => res.json({ ok: true }));
 
+// Listar pedidos (admin simples)
+app.get('/', async (_req, res) => {
+  try {
+    const orders = await Order.find().sort({ createdAt: -1 }).limit(100);
+    res.json(orders);
+  } catch (e) { res.status(500).json({ message: e.message }); }
+});
+
 // Criar pedido
 app.post('/', [
   body('items').isArray({ min: 1 }),

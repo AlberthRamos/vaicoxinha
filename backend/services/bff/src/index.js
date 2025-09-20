@@ -22,10 +22,26 @@ const targetPayments = process.env.SERVICES_PAYMENTS_URL || 'http://localhost:40
 const targetAdmin = process.env.SERVICES_ADMIN_URL || 'http://localhost:4004';
 
 // Proxies
-app.use('/api/products', createProxyMiddleware({ target: targetProducts, changeOrigin: true }));
-app.use('/api/orders', createProxyMiddleware({ target: targetOrders, changeOrigin: true }));
-app.use('/api/payments', createProxyMiddleware({ target: targetPayments, changeOrigin: true }));
-app.use('/api/admin', createProxyMiddleware({ target: targetAdmin, changeOrigin: true }));
+app.use('/api/products', createProxyMiddleware({
+  target: targetProducts,
+  changeOrigin: true,
+  pathRewrite: { '^/api/products': '/' },
+}));
+app.use('/api/orders', createProxyMiddleware({
+  target: targetOrders,
+  changeOrigin: true,
+  pathRewrite: { '^/api/orders': '/' },
+}));
+app.use('/api/payments', createProxyMiddleware({
+  target: targetPayments,
+  changeOrigin: true,
+  pathRewrite: { '^/api/payments': '/' },
+}));
+app.use('/api/admin', createProxyMiddleware({
+  target: targetAdmin,
+  changeOrigin: true,
+  pathRewrite: { '^/api/admin': '/' },
+}));
 
 app.get('/health', (_req, res) => res.json({ ok: true }));
 
