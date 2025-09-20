@@ -8,6 +8,7 @@ const amqp = require('amqplib');
 dotenv.config();
 
 const app = express();
+app.disable('x-powered-by');
 app.use(helmet());
 app.use(express.json());
 app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
@@ -34,14 +35,17 @@ app.get('/health', (_req, res) => res.json({ ok: true }));
 app.post('/pix', async (req, res) => {
   try {
     if (!process.env.MERCADOPAGO_TOKEN) return res.status(500).json({ message: 'MERCADOPAGO_TOKEN não configurado' });
-    const { amount, description } = req.body;
+    const { amount, description, orderId } = req.body;
     const result = await mercadopago.payment.create({
       transaction_amount: amount,
       description: description || 'Vai Coxinha - Pedido',
       payment_method_id: 'pix',
       payer: { email: 'cliente@example.com' }
     });
-    publishEvent('payment_created', { method: 'pix', id: result.body.id, status: result.body.status });
+    publishEvent('payment_created', { method: 'pix', id: result.body.id, status: result.body.status, orderId });
+    if (result.body.status === 'approved' || result.body.status === 'authorized') {
+      publishEvent('payment_paid', { orderId, mpPaymentId: result.body.id });
+    }
     res.json(result.body);
   } catch (e) { res.status(500).json({ message: e.message }); }
 });

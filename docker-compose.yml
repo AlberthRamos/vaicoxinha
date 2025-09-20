@@ -75,6 +75,7 @@ services:
       - PORT=4004
       - MONGO_URI=mongodb://mongo:27017/vai-coxinha
       - JWT_SECRET=${JWT_SECRET}
+      - ADMIN_PASSWORD_HASH=${ADMIN_PASSWORD_HASH}
 volumes:
   mongo_data:
 

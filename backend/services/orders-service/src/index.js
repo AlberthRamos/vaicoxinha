@@ -4,11 +4,13 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const { body, validationResult } = require('express-validator');
+const jwt = require('jsonwebtoken');
 const amqp = require('amqplib');
 
 dotenv.config();
 
 const app = express();
+app.disable('x-powered-by');
 app.use(helmet());
 app.use(express.json());
 app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
@@ -51,10 +53,43 @@ async function publishEvent(event, payload) {
   }
 }
 
+// Consumir eventos de pagamento e atualizar status
+(async () => {
+  try {
+    const conn = await amqp.connect(process.env.RABBITMQ_URL || 'amqp://localhost:5672');
+    const ch = await conn.createChannel();
+    await ch.assertExchange('order_events', 'fanout', { durable: true });
+    const q = await ch.assertQueue('orders-service-events', { durable: true });
+    await ch.bindQueue(q.queue, 'order_events', '');
+    ch.consume(q.queue, async (msg) => {
+      if (!msg) return;
+      try {
+        const data = JSON.parse(msg.content.toString());
+        if (data.event === 'payment_paid' && data.payload?.orderId) {
+          await Order.findByIdAndUpdate(data.payload.orderId, { status: 'paid' });
+        }
+      } catch (e) {}
+      ch.ack(msg);
+    });
+  } catch (err) {
+    console.warn('Orders consumer não iniciado:', err.message);
+  }
+})();
+
 app.get('/health', (_req, res) => res.json({ ok: true }));
 
 // Listar pedidos (admin simples)
-app.get('/', async (_req, res) => {
+const authAdmin = (req, res, next) => {
+  try {
+    const header = req.headers.authorization || '';
+    const token = header.split(' ')[1];
+    if (!token) return res.status(401).json({ message: 'Unauthorized' });
+    jwt.verify(token, process.env.JWT_SECRET || 'dev');
+    next();
+  } catch { return res.status(401).json({ message: 'Unauthorized' }); }
+};
+
+app.get('/', authAdmin, async (_req, res) => {
   try {
     const orders = await Order.find().sort({ createdAt: -1 }).limit(100);
     res.json(orders);
@@ -66,12 +101,12 @@ app.post('/', [
   body('items').isArray({ min: 1 }),
   body('totalAmount').isFloat({ min: 0 }),
   body('payment.method').isIn(['pix', 'card']),
-  body('termsAccepted').equals('true').toBoolean().optional({ nullable: true })
+  body('termsAccepted').isBoolean().custom(v => v === true)
 ], async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
   try {
-    const order = new Order({ ...req.body, termsAccepted: Boolean(req.body.termsAccepted) });
+    const order = new Order({ ...req.body, termsAccepted: true });
     await order.save();
     publishEvent('order_created', { id: order._id.toString(), status: order.status });
     res.status(201).json(order);
@@ -88,7 +123,7 @@ app.get('/:id', async (req, res) => {
 });
 
 // Atualizar status
-app.patch('/:id/status', [body('status').isIn(['preparing', 'out_for_delivery', 'difficulty', 'delivered', 'cancelled'])], async (req, res) => {
+app.patch('/:id/status', authAdmin, [body('status').isIn(['preparing', 'out_for_delivery', 'difficulty', 'delivered', 'cancelled'])], async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
   try {
@@ -97,6 +132,23 @@ app.patch('/:id/status', [body('status').isIn(['preparing', 'out_for_delivery', 
     publishEvent('order_status_updated', { id: order._id.toString(), status: order.status });
     res.json(order);
   } catch (e) { res.status(500).json({ message: e.message }); }
+});
+
+// Simular rota e eventos
+app.post('/simulate/:id', authAdmin, async (req, res) => {
+  const id = req.params.id;
+  const sequence = ['preparing', 'out_for_delivery', Math.random() < 0.3 ? 'difficulty' : 'out_for_delivery', 'delivered'];
+  let delay = 1000;
+  sequence.forEach((st, idx) => {
+    setTimeout(async () => {
+      try {
+        const order = await Order.findByIdAndUpdate(id, { status: st }, { new: true });
+        if (order) publishEvent('order_status_updated', { id: order._id.toString(), status: order.status });
+      } catch {}
+    }, delay);
+    delay += (idx === 1 ? 8000 : 5000);
+  });
+  res.json({ started: true });
 });
 
 const PORT = process.env.PORT || 4002;

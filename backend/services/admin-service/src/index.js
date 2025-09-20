@@ -5,10 +5,12 @@ const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
+const rateLimit = require('express-rate-limit');
 
 dotenv.config();
 
 const app = express();
+app.disable('x-powered-by');
 app.use(helmet());
 app.use(express.json());
 app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
@@ -18,7 +20,8 @@ const Admin = mongoose.model('Admin', adminSchema);
 
 app.get('/health', (_req, res) => res.json({ ok: true }));
 
-app.post('/login', async (req, res) => {
+const loginLimiter = rateLimit({ windowMs: 10 * 60 * 1000, max: 10 });
+app.post('/login', loginLimiter, async (req, res) => {
   const { username, password } = req.body;
   try {
     let admin = await Admin.findOne({ username });
