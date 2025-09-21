@@ -1,19 +1,60 @@
 # Pagamentos Vai Coxinha - PWA Delivery
 
-## Métodos Disponíveis
-- PIX via QR Code
-- PIX Copia e Cola
-- Pagamento em nome da empresa (não mostra Mercado Pago)
+## Métodos de Pagamento Implementados
+- **PIX QR Code** - QR Code dinâmico gerado automaticamente
+- **PIX Copia e Cola** - Código copiável com botão de cópia
+- **Simulação de Pagamento** - Confirmação instantânea para testes
 
-## UX/Design
-- Tela de pagamento limpa, simples, com botões grandes
-- Glass Design: cartão ou box do QR Code translúcido
-- Feedback imediato ao copiar o código ou concluir pagamento
-- Botão “Confirmar Pagamento” destacado em vermelho vivo (#E63946)
+## Componentes de UI/UX
+- **GlassCard** - Container translúcido para área de pagamento
+- **ShimmerButton** - Botão de confirmação com efeito shimmer
+- **NumberTicker** - Animação do valor total durante checkout
+- **AnimatedGradientText** - Textos importantes com gradiente
+- **BoxReveal** - Revelação gradual das opções de pagamento
 
-## Workflow Interação
-1. Usuário confirma pedido
-2. Seleciona Pix ou Copia e Cola
-3. Exibe QR Code ou código de pagamento
-4. Usuário conclui → notificação de pagamento recebido
-5. Pedido atualizado no painel admin em tempo real
+## Fluxo de Checkout Implementado (3 Etapas)
+
+### 1. Revisão do Carrinho
+- **Resumo Visual** - Produtos com imagens, quantidades e preços
+- **Total Animado** - NumberTicker atualiza com transição suave
+- **Botão Prosseguir** - RippleButton com validação de itens
+
+### 2. Endereço de Entrega
+- **Formulário Inteligente** - Campos com validação em tempo real
+- **Glass Input** - Campos com fundo translúcido e bordas animadas
+- **Auto-complete** - Sugestões para endereço (pronto para integração)
+- **Validação** - CEP, número e complemento obrigatórios
+
+### 3. Pagamento
+- **Container GlassCard** - Área principal com efeito blur
+- **PIX QR Code** - QR Code gerado dinamicamente (base64)
+- **PIX Copia e Cola** - Código com botão de cópia e feedback visual
+- **Timer de Expiração** - 15 minutos com contador regressivo
+- **Botão Finalizar** - ShimmerButton com confirmação de pagamento
+
+## Interações e Feedback
+- **Cópia Código PIX** - Toast verde "✅ Código PIX copiado!"
+- **Confirmação Pagamento** - Toast azul "⏳ Processando pagamento..."
+- **Sucesso** - Toast verde "🎉 Pedido confirmado!" + código do pedido
+- **Erro** - Toast vermelho "❌ Erro ao processar pagamento"
+
+## Integração com Backend
+- **WebSocket** - Atualização em tempo real do status do pedido
+- **API REST** - Endpoints para criação e confirmação de pedidos
+- **JWT Token** - Autenticação segura para transações
+- **Validação** - Verificação de estoque e preços antes da confirmação
+
+## Segurança e Confiabilidade
+- **HTTPS** - Toda comunicação criptografada
+- **Validação Cliente/Servidor** - Dupla verificação de dados
+- **Timeout** - Sessão expira após 15 minutos de inatividade
+- **Rollback** - Cancelamento automático se pagamento falhar
+- **Logs** - Registro de todas as transações para auditoria
+
+## Próximas Implementações
+- **Múltiplas Formas** - Cartão de crédito, boleto bancário
+- **Parcelamento** - Opção de parcelar pedidos acima de R$50
+- **Wallet Digital** - Integração com Google Pay/Apple Pay
+- **Recorrência** - Assinatura mensal de combos fixos
+- **Cashback** - Sistema de pontos e recompensas
+- **Split Payment** - Divisão do valor entre múltiplos pagadores
