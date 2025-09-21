@@ -1,6 +1,6 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, HttpStatus, HttpException, Inject } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, HttpStatus, HttpException, Inject, Query } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiQuery } from '@nestjs/swagger';
 import { CreateProductDto } from '../common/dto';
 import { WinstonLoggerService } from '../common/logger';
 
