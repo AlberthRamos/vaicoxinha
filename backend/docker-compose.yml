@@ -140,6 +140,22 @@ services:
 volumes:
   postgres_data:
 
+  postgres_data:
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: vc_postgres_test
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: vai_coxinha_test
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
 networks:
   vai-coxinha-network:
     driver: bridge

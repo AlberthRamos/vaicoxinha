@@ -77,7 +77,18 @@ services:
       - MONGO_URI=mongodb://mongo:27017/vai-coxinha
       - JWT_SECRET=${JWT_SECRET}
       - ADMIN_PASSWORD_HASH=${ADMIN_PASSWORD_HASH}
+  postgres_test:
+    image: postgres:13
+    container_name: vc_postgres_test
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: vai_coxinha_test
+    volumes:
+      - postgres_test_data:/var/lib/postgresql/data
 volumes:
   mongo_data:
-
-
+  postgres_test_data:
