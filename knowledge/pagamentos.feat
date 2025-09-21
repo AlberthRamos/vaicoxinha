@@ -1,0 +1,19 @@
+# Pagamentos Vai Coxinha - PWA Delivery
+
+## Métodos Disponíveis
+- PIX via QR Code
+- PIX Copia e Cola
+- Pagamento em nome da empresa (não mostra Mercado Pago)
+
+## UX/Design
+- Tela de pagamento limpa, simples, com botões grandes
+- Glass Design: cartão ou box do QR Code translúcido
+- Feedback imediato ao copiar o código ou concluir pagamento
+- Botão “Confirmar Pagamento” destacado em vermelho vivo (#E63946)
+
+## Workflow Interação
+1. Usuário confirma pedido
+2. Seleciona Pix ou Copia e Cola
+3. Exibe QR Code ou código de pagamento
+4. Usuário conclui → notificação de pagamento recebido
+5. Pedido atualizado no painel admin em tempo real

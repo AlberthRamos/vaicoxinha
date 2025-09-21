@@ -1,0 +1,145 @@
+version: '3.8'
+
+services:
+  # PostgreSQL
+  postgres:
+    image: postgres:15
+    container_name: vai-coxinha-postgres
+    environment:
+      POSTGRES_DB: vai_coxinha_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - vai-coxinha-network
+
+  # Redis
+  redis:
+    image: redis:7-alpine
+    container_name: vai-coxinha-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - vai-coxinha-network
+
+  # RabbitMQ
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: vai-coxinha-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - vai-coxinha-network
+
+  # API Gateway
+  api-gateway:
+    build:
+      context: .
+      dockerfile: apps/api-gateway/Dockerfile
+    container_name: vai-coxinha-api-gateway
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - JWT_SECRET=your-secret-key-here
+      - JWT_EXPIRATION=7d
+      - PRODUCTS_SERVICE_HOST=products-service
+      - PRODUCTS_SERVICE_PORT=3001
+      - ORDERS_SERVICE_HOST=orders-service
+      - ORDERS_SERVICE_PORT=3002
+      - PAYMENTS_SERVICE_HOST=payments-service
+      - PAYMENTS_SERVICE_PORT=3003
+      - ADMIN_SERVICE_HOST=admin-service
+      - ADMIN_SERVICE_PORT=3004
+      - RABBITMQ_URL=amqp://admin:admin@rabbitmq:5672
+      - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/vai_coxinha_db
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+    networks:
+      - vai-coxinha-network
+
+  # Products Service
+  products-service:
+    build:
+      context: .
+      dockerfile: apps/products/Dockerfile
+    container_name: vai-coxinha-products-service
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/vai_coxinha_db
+      - RABBITMQ_URL=amqp://admin:admin@rabbitmq:5672
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - vai-coxinha-network
+
+  # Orders Service
+  orders-service:
+    build:
+      context: .
+      dockerfile: apps/orders/Dockerfile
+    container_name: vai-coxinha-orders-service
+    environment:
+      - NODE_ENV=development
+      - PORT=3002
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/vai_coxinha_db
+      - RABBITMQ_URL=amqp://admin:admin@rabbitmq:5672
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - vai-coxinha-network
+
+  # Payments Service
+  payments-service:
+    build:
+      context: .
+      dockerfile: apps/payments/Dockerfile
+    container_name: vai-coxinha-payments-service
+    environment:
+      - NODE_ENV=development
+      - PORT=3003
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/vai_coxinha_db
+      - RABBITMQ_URL=amqp://admin:admin@rabbitmq:5672
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - vai-coxinha-network
+
+  # Admin Service
+  admin-service:
+    build:
+      context: .
+      dockerfile: apps/admin/Dockerfile
+    container_name: vai-coxinha-admin-service
+    environment:
+      - NODE_ENV=development
+      - PORT=3004
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/vai_coxinha_db
+      - RABBITMQ_URL=amqp://admin:admin@rabbitmq:5672
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - vai-coxinha-network
+
+volumes:
+  postgres_data:
+
+networks:
+  vai-coxinha-network:
+    driver: bridge

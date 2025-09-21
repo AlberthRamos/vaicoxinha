@@ -1,0 +1,83 @@
+version: '3.9'
+services:
+  mongo:
+    image: mongo:6
+    container_name: vc_mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: vc_rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  bff:
+    build: ./backend/services/bff
+    container_name: vc_bff
+    depends_on:
+      - mongo
+      - rabbitmq
+      - products
+      - orders
+      - payments
+      - admin
+    environment:
+      - PORT=8080
+      - FRONTEND_URL=http://localhost:3000
+      - SERVICES_PRODUCTS_URL=http://products:4001
+      - SERVICES_ORDERS_URL=http://orders:4002
+      - SERVICES_PAYMENTS_URL=http://payments:4003
+      - SERVICES_ADMIN_URL=http://admin:4004
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+    ports:
+      - "8080:8080"
+  products:
+    build: ./backend/services/products-service
+    container_name: vc_products
+    depends_on:
+      - mongo
+      - rabbitmq
+    environment:
+      - PORT=4001
+      - MONGO_URI=mongodb://mongo:27017/vai-coxinha
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+      - SEED_TOKEN=${SEED_TOKEN}
+  orders:
+    build: ./backend/services/orders-service
+    container_name: vc_orders
+    depends_on:
+      - mongo
+      - rabbitmq
+    environment:
+      - PORT=4002
+      - MONGO_URI=mongodb://mongo:27017/vai-coxinha
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+  payments:
+    build: ./backend/services/payments-service
+    container_name: vc_payments
+    depends_on:
+      - mongo
+      - rabbitmq
+    environment:
+      - PORT=4003
+      - MONGO_URI=mongodb://mongo:27017/vai-coxinha
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+      - MERCADOPAGO_TOKEN=${MERCADOPAGO_TOKEN}
+  admin:
+    build: ./backend/services/admin-service
+    container_name: vc_admin
+    depends_on:
+      - mongo
+    environment:
+      - PORT=4004
+      - MONGO_URI=mongodb://mongo:27017/vai-coxinha
+      - JWT_SECRET=${JWT_SECRET}
+      - ADMIN_PASSWORD_HASH=${ADMIN_PASSWORD_HASH}
+volumes:
+  mongo_data:
+
+

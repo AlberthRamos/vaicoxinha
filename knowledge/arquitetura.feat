@@ -1,0 +1,36 @@
+# Arquitetura do App Vai Coxinha - PWA Delivery
+
+## Tipo de Aplicação
+- Progressive Web App (PWA) otimizado para mobile-first, mas responsivo em desktop.
+- Instalação direta pelo navegador.
+- Favicon configurado e logo da empresa fixo no topo.
+
+## Stack Tecnológica
+- Frontend: React.js + TailwindCSS + Shadcn/UI
+- Backend: Node.js + Express ou NestJS
+- Banco de Dados: PostgreSQL ou MongoDB
+- Pagamentos: Mercado Pago (transparentes para o usuário)
+- Deploy: Render
+
+## Estrutura de Pastas
+- /frontend → interface do usuário
+- /backend → API, lógica e endpoints
+- /admin → painel de administração
+- /knowledge → arquivos .feat (alimentam o RAG)
+- /assets → logo, favicon, imagens de produtos
+
+## Segurança
+- HTTPS obrigatório (Render fornece SSL)
+- JWT para autenticação admin
+- Limite de tentativas de login
+- Criptografia de senhas (bcrypt)
+- Validação de dados para evitar injeção SQL ou XSS
+
+## Workflow de Interação
+1. Usuário abre app → página de cardápio carregada automaticamente.
+2. Seleciona combo → produto destacado com imagem, nome, descrição e preço.
+3. Clica “Adicionar ao Carrinho” → animação rápida de feedback.
+4. Confirma pedido → 3 etapas máximas: carrinho → endereço → pagamento.
+5. Pagamento → Pix via QR Code ou copia e cola.
+6. Notificação em tempo real sobre status do pedido.
+7. Usuário acompanha entrega → painel mostra previsão de chegada e status.

@@ -1,0 +1,19 @@
+# Painel Admin Vai Coxinha
+
+## Funções Principais
+- Visualização em tempo real de todos os pedidos
+- Acompanhar status: Recebido, Em preparo, Saiu para entrega, Entregue
+- Analytics: produtos mais vendidos, receita total, horários de pico
+- Cadastro/edição de produtos
+- Exportação de dados em CSV
+
+## UX/Design
+- Dashboard limpo, moderno, com Glass Design
+- Botões grandes e painéis com cores distintas para status
+- Feedback visual ao atualizar status do pedido
+
+## Workflow Interação
+1. Admin loga via URL secreta + JWT
+2. Painel inicial → lista de pedidos com filtros rápidos
+3. Seleciona pedido → atualiza status com clique único
+4. Painel de métricas → gráficos atualizados em tempo real

@@ -1,0 +1,24 @@
+# Deploy Vai Coxinha - PWA Delivery
+
+## Ambiente
+- Render: PaaS, build automático a cada push no GitHub
+- Frontend: app estático
+- Backend: Node.js/Express ou NestJS
+- Banco de dados: PostgreSQL ou MongoDB
+
+## Workflow Deploy
+1. Commit no repo → GitHub Actions dispara build
+2. Backend build → deploy no Render
+3. Frontend build → deploy no Render
+4. Configurar domínio: vaicoxinha.shop
+5. Testar PWA, checkout, painel admin
+
+## Variáveis de Ambiente
+- MONGO_URI
+- JWT_SECRET
+- MERCADOPAGO_TOKEN
+
+## Observações
+- Logs monitorados em tempo real
+- Backup automático diário do banco
+- CI/CD automatizado com testes e linting
