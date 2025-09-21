@@ -1,0 +1,40 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#F7931E;stop-opacity:0.2" />
+    </linearGradient>
+    <linearGradient id="coxinha" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D4A574" />
+      <stop offset="100%" style="stop-color:#B8956A" />
+    </linearGradient>
+    <linearGradient id="queijo" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700" />
+      <stop offset="100%" style="stop-color:#FFA500" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="400" height="300" fill="url(#bg)" rx="16"/>
+  
+  <!-- Heart shape background -->
+  <path d="M200 180 C180 160, 140 160, 140 190 C140 220, 200 250, 200 250 C200 250, 260 220, 260 190 C260 160, 220 160, 200 180 Z" fill="#FF6B35" opacity="0.1"/>
+  
+  <!-- Coxinhas de Frango -->
+  <ellipse cx="160" cy="120" rx="30" ry="40" fill="url(#coxinha)" transform="rotate(-15 160 120)"/>
+  <ellipse cx="240" cy="120" rx="30" ry="40" fill="url(#coxinha)" transform="rotate(15 240 120)"/>
+  <ellipse cx="130" cy="170" rx="25" ry="35" fill="url(#coxinha)" transform="rotate(20 130 170)"/>
+  <ellipse cx="270" cy="170" rx="25" ry="35" fill="url(#coxinha)" transform="rotate(-20 270 170)"/>
+  
+  <!-- Coxinhas de Queijo -->
+  <ellipse cx="200" cy="140" rx="30" ry="40" fill="url(#queijo)" transform="rotate(0 200 140)"/>
+  <ellipse cx="200" cy="190" rx="25" ry="35" fill="url(#queijo)" transform="rotate(10 200 190)"/>
+  
+  <!-- Highlights -->
+  <ellipse cx="150" cy="105" rx="6" ry="10" fill="#F4E4BC" opacity="0.8" transform="rotate(-15 150 105)"/>
+  <ellipse cx="230" cy="105" rx="6" ry="10" fill="#F4E4BC" opacity="0.8" transform="rotate(15 230 105)"/>
+  <ellipse cx="190" cy="125" rx="6" ry="10" fill="#FFF8DC" opacity="0.8"/>
+  
+  <!-- Text -->
+  <text x="200" y="250" text-anchor="middle" fill="#FF6B35" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Combo Dupla</text>
+  <text x="200" y="275" text-anchor="middle" fill="#666" font-family="Arial, sans-serif" font-size="14">6 Coxinhas de Frango + 4 de Queijo</text>
+</svg>

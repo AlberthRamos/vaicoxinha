@@ -1,0 +1,55 @@
+# Otimização Vai Coxinha - PWA Delivery
+
+## Performance Frontend
+- Lazy loading para imagens e componentes não críticos
+- Code splitting para reduzir tamanho do bundle inicial
+- Compressão de imagens e uso de formatos modernos (WebP, AVIF)
+- Preload de recursos críticos
+- Implementação de Service Workers para cache offline
+- Otimização de CSS com purge de classes não utilizadas
+
+## Performance Backend
+- Implementação de cache para endpoints frequentes
+- Otimização de consultas ao banco de dados
+- Rate limiting para prevenir abusos
+- Compressão de respostas (gzip/brotli)
+- Pooling de conexões com banco de dados
+- Logs estruturados para melhor monitoramento
+
+## Mobile Optimization
+- Design mobile-first com breakpoints responsivos
+- Touch targets adequados (mínimo 44x44px)
+- Redução de animações em dispositivos com preferência
+- Otimização para diferentes tamanhos de tela
+- Suporte a gestos nativos (swipe, pinch)
+- Adaptação para notch e áreas seguras
+
+## SEO e Acessibilidade
+- Meta tags completas e estruturadas
+- Implementação de Schema.org para Rich Results
+- Semântica HTML5 correta
+- Contraste de cores adequado (WCAG AA)
+- Suporte a screen readers
+- Navegação por teclado
+
+## Métricas de Monitoramento
+- Core Web Vitals (LCP, FID, CLS)
+- Tempo de carregamento inicial
+- Tempo até interatividade
+- Taxa de conversão por página
+- Taxa de abandono do carrinho
+- Tempo médio de sessão
+
+## Estratégias de Cache
+- Cache de API com TTL variável por recurso
+- Cache de imagens e assets estáticos
+- Estratégia stale-while-revalidate para dados frequentes
+- Cache de sessão para dados do usuário
+- Invalidação seletiva de cache
+
+## Testes Automatizados
+- Testes unitários para lógica de negócio
+- Testes de integração para fluxos críticos
+- Testes end-to-end para jornadas do usuário
+- Testes de performance e carga
+- Testes de acessibilidade automatizados

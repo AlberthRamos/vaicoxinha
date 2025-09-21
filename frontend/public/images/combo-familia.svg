@@ -1,0 +1,39 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#F7931E;stop-opacity:0.2" />
+    </linearGradient>
+    <linearGradient id="coxinha" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D4A574" />
+      <stop offset="100%" style="stop-color:#B8956A" />
+    </linearGradient>
+    <linearGradient id="queijo" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700" />
+      <stop offset="100%" style="stop-color:#FFA500" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="400" height="300" fill="url(#bg)" rx="16"/>
+  
+  <!-- Coxinhas de Frango -->
+  <ellipse cx="100" cy="100" rx="25" ry="35" fill="url(#coxinha)" transform="rotate(-15 100 100)"/>
+  <ellipse cx="160" cy="90" rx="25" ry="35" fill="url(#coxinha)" transform="rotate(10 160 90)"/>
+  <ellipse cx="220" cy="95" rx="25" ry="35" fill="url(#coxinha)" transform="rotate(-5 220 95)"/>
+  <ellipse cx="280" cy="105" rx="25" ry="35" fill="url(#coxinha)" transform="rotate(15 280 105)"/>
+  <ellipse cx="340" cy="100" rx="25" ry="35" fill="url(#coxinha)" transform="rotate(-10 340 100)"/>
+  
+  <!-- Coxinhas de Queijo -->
+  <ellipse cx="130" cy="160" rx="25" ry="35" fill="url(#queijo)" transform="rotate(20 130 160)"/>
+  <ellipse cx="190" cy="155" rx="25" ry="35" fill="url(#queijo)" transform="rotate(-15 190 155)"/>
+  <ellipse cx="250" cy="165" rx="25" ry="35" fill="url(#queijo)" transform="rotate(5 250 165)"/>
+  <ellipse cx="310" cy="160" rx="25" ry="35" fill="url(#queijo)" transform="rotate(-25 310 160)"/>
+  
+  <!-- Mais coxinhas no fundo -->
+  <ellipse cx="70" cy="140" rx="20" ry="30" fill="url(#coxinha)" opacity="0.7" transform="rotate(30 70 140)"/>
+  <ellipse cx="370" cy="140" rx="20" ry="30" fill="url(#coxinha)" opacity="0.7" transform="rotate(-30 370 140)"/>
+  
+  <!-- Text -->
+  <text x="200" y="240" text-anchor="middle" fill="#FF6B35" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Combo Família</text>
+  <text x="200" y="265" text-anchor="middle" fill="#666" font-family="Arial, sans-serif" font-size="14">20 Coxinhas de Frango + 10 de Queijo</text>
+</svg>

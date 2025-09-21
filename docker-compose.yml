@@ -45,6 +45,7 @@ services:
       - PORT=4001
       - MONGO_URI=mongodb://mongo:27017/vai-coxinha
       - RABBITMQ_URL=amqp://rabbitmq:5672
+      - SEED_TOKEN=${SEED_TOKEN}
   orders:
     build: ./backend/services/orders-service
     container_name: vc_orders
