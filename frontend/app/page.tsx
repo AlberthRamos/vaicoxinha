@@ -9,7 +9,6 @@ import { FabMenu } from '@/components/fab-menu'
 import { motion } from 'framer-motion'
 import toast from 'react-hot-toast'
 import { BlurFade, TypingAnimation, ShimmerButton } from '@/components/ui/magic-ui'
-import { UXTestTrigger } from '@/components/ui/ux-test'
 import { useCart } from '@/contexts/CartContext'
 
 interface Product {
@@ -139,53 +138,74 @@ export default function Home() {
       <Header />
       
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-8 pt-24">
-        <BlurFade>
-          <GlassCard className="max-w-3xl mx-auto mb-12 text-center">
-            <div className="animate-float mb-6">
-              <span className="text-6xl">🍗</span>
-            </div>
-            <TypingAnimation
-              className="text-4xl md:text-5xl font-bold text-coxinha-dark mb-6"
-              text="Coxinhas Artesanais"
-            />
-            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-              Entrega rápida em até 30 minutos! Os melhores combos para você aproveitar.
+      <section className="relative text-center py-20 md:py-32 bg-gradient-to-t from-orange-100/50 to-transparent">
+        <div className="container mx-auto px-4 z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-4xl md:text-6xl font-extrabold text-coxinha-dark mb-4 tracking-tight">
+              Promoção Insana!
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
+              3 Coxinhas + Refri por apenas <span className="font-bold text-coxinha-primary">R$9,90</span> – Peça já e não perca!
             </p>
-            <div className="flex flex-wrap justify-center gap-6 text-base text-gray-600">
-              <span className="flex items-center gap-2 bg-white/50 px-4 py-2 rounded-full">
-                ⚡ Entrega Express
+            <ShimmerButton>
+              <span className="whitespace-pre-wrap text-center text-lg font-semibold leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10">
+                Pedir Agora!
               </span>
-              <span className="flex items-center gap-2 bg-white/50 px-4 py-2 rounded-full">
-                🔥 Quentinhas na Hora
-              </span>
-              <span className="flex items-center gap-2 bg-white/50 px-4 py-2 rounded-full">
-                💳 Pagamento Fácil
-              </span>
-            </div>
-          </GlassCard>
-        </BlurFade>
+            </ShimmerButton>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="container mx-auto px-4 py-12">
+        {/* Category Filter */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-center text-coxinha-dark mb-8">Nossas Delícias</h2>
+          <div className="flex justify-center flex-wrap gap-4">
+            {['combos', 'tradicionais', 'especiais', 'veganas', 'bebidas'].map(category => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-6 py-2 rounded-full text-base font-semibold transition-all duration-300 ${
+                  selectedCategory === category
+                    ? 'bg-coxinha-primary text-white shadow-lg'
+                    : 'bg-white text-gray-700 hover:bg-orange-50'
+                }`}
+              >
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </button>
+            ))}
+          </div>
+        </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {products.map((product, index) => (
-            <BlurFade key={product.id} delay={index * 0.1}>
-              <ProductCard
-                {...product}
-                onAddToCart={() => handleAddToCart(product.id)}
-              />
-            </BlurFade>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-10">
+          {products.filter(p => selectedCategory === 'ofertas' || p.category === selectedCategory).map((product) => (
+            <ProductCard
+              key={product.id}
+              {...product}
+              onAddToCart={() => handleAddToCart(product.id)}
+            />
           ))}
         </div>
       </section>
       
       {/* Floating Action Button Menu */}
       <FabMenu cartItemsCount={totalItems} />
-      
-      {/* UX Test Component */}
-      <div className="fixed bottom-20 right-4 z-50">
-        <UXTestTrigger />
-      </div>
+
+      <footer className="bg-gray-800 text-white py-8">
+        <div className="container mx-auto px-4 text-center">
+          <p>&copy; {new Date().getFullYear()} Vai Coxinha. Todos os direitos reservados.</p>
+          <div className="flex justify-center space-x-4 mt-4">
+            <a href="#" className="hover:text-coxinha-primary transition-colors">Facebook</a>
+            <a href="#" className="hover:text-coxinha-primary transition-colors">Instagram</a>
+            <a href="#" className="hover:text-coxinha-primary transition-colors">Twitter</a>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

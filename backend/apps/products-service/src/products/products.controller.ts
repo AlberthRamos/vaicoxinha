@@ -63,8 +63,4 @@ export class ProductsController {
     return this.productsService.findPromotional();
   }
 
-  @MessagePattern({ cmd: 'seed_products' })
-  async seedProducts(): Promise<void> {
-    return this.productsService.seedProducts();
-  }
 }

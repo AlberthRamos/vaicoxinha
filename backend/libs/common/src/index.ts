@@ -1,3 +1,4 @@
+export * from './common.module';
 export * from './config/configuration';
 export * from './database/database.module';
 export * from './schemas/order.schema';

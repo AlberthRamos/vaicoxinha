@@ -8,31 +8,31 @@ export class CommonConfigService {
   constructor(private configService: ConfigService) {}
 
   get port(): number {
-    return this.configService.get<number>('config.port');
+    return this.configService.get<number>('config.port', 3000);
   }
 
   get jwtSecret(): string {
-    return this.configService.get<string>('config.jwt.secret');
+    return this.configService.get<string>('config.jwt.secret', '');
   }
 
   get jwtExpiration(): string {
-    return this.configService.get<string>('config.jwt.expiration');
+    return this.configService.get<string>('config.jwt.expiration', '7d');
   }
 
   get mongoUri(): string {
-    return this.configService.get<string>('config.database.mongoUri');
+    return this.configService.get<string>('config.database.mongoUri', '');
   }
 
   get rabbitmqUrl(): string {
-    return this.configService.get<string>('config.rabbitmq.url');
+    return this.configService.get<string>('config.rabbitmq.url', 'amqp://localhost:5672');
   }
 
   get bcryptSaltRounds(): number {
-    return this.configService.get<number>('config.bcrypt.saltRounds');
+    return this.configService.get<number>('config.bcrypt.saltRounds', 10);
   }
 
   get adminPasswordHash(): string {
-    return this.configService.get<string>('config.admin.passwordHash');
+    return this.configService.get<string>('config.admin.passwordHash', '');
   }
 
   get nodeEnv(): string {

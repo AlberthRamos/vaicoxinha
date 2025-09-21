@@ -73,7 +73,7 @@ services:
   products-service:
     build:
       context: .
-      dockerfile: apps/products/Dockerfile
+      dockerfile: apps/products-service/Dockerfile
     container_name: vai-coxinha-products-service
     environment:
       - NODE_ENV=development
@@ -90,7 +90,7 @@ services:
   orders-service:
     build:
       context: .
-      dockerfile: apps/orders/Dockerfile
+      dockerfile: apps/orders-service/Dockerfile
     container_name: vai-coxinha-orders-service
     environment:
       - NODE_ENV=development
@@ -107,7 +107,7 @@ services:
   payments-service:
     build:
       context: .
-      dockerfile: apps/payments/Dockerfile
+      dockerfile: apps/payments-service/Dockerfile
     container_name: vai-coxinha-payments-service
     environment:
       - NODE_ENV=development
@@ -124,7 +124,7 @@ services:
   admin-service:
     build:
       context: .
-      dockerfile: apps/admin/Dockerfile
+      dockerfile: apps/admin-service/Dockerfile
     container_name: vai-coxinha-admin-service
     environment:
       - NODE_ENV=development

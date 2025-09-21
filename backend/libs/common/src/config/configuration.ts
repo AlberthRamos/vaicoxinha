@@ -15,7 +15,7 @@ export const validationSchema = Joi.object({
 });
 
 export const configuration = registerAs('config', () => ({
-  port: parseInt(process.env.PORT, 10) || 3000,
+  port: parseInt(process.env.PORT || '3000', 10),
   jwt: {
     secret: process.env.JWT_SECRET,
     expiration: process.env.JWT_EXPIRATION || '7d',
@@ -27,7 +27,7 @@ export const configuration = registerAs('config', () => ({
     url: process.env.RABBITMQ_URL || 'amqp://localhost:5672',
   },
   bcrypt: {
-    saltRounds: parseInt(process.env.BCRYPT_SALT_ROUNDS, 10) || 10,
+    saltRounds: parseInt(process.env.BCRYPT_SALT_ROUNDS || '10', 10),
   },
   admin: {
     passwordHash: process.env.ADMIN_PASSWORD_HASH,
