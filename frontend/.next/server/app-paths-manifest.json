@@ -1,10 +1,6 @@
 {
-  "/_not-found": "app/_not-found.js",
-  "/acompanhamento/page": "app/acompanhamento/page.js",
+  "/cardapio/page": "app/cardapio/page.js",
   "/carrinho/page": "app/carrinho/page.js",
-  "/admin/dashboard/page": "app/admin/dashboard/page.js",
-  "/test/admin-dashboard/page": "app/test/admin-dashboard/page.js",
-  "/checkout/page": "app/checkout/page.js",
-  "/test/integration-test/page": "app/test/integration-test/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/page": "app/page.js"
 }

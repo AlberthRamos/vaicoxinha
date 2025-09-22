@@ -1,0 +1,1 @@
+export { LocationCapture } from './LocationCapture';

@@ -1,0 +1,195 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String
+  name          String
+  phone         String?
+  role          UserRole  @default(CUSTOMER)
+  permissions   String[]  @default([])
+  isActive      Boolean   @default(true)
+  emailVerified Boolean   @default(false)
+  address       Json?     // Address type
+  lastAccessAt  DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  deletedAt     DateTime?
+
+  // Relacionamentos
+  orders        Order[]
+  
+  @@index([email])
+  @@index([role])
+  @@index([isActive])
+  @@map("users")
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  image       String?
+  isActive    Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  deletedAt   DateTime?
+
+  // Relacionamentos
+  products    Product[]
+  
+  @@index([isActive])
+  @@index([order])
+  @@map("categories")
+}
+
+model Product {
+  id                String   @id @default(cuid())
+  name              String
+  description       String
+  price             Decimal  @db.Decimal(10, 2)
+  originalPrice     Decimal? @db.Decimal(10, 2)
+  categoryId        String
+  images            String[] @default([])
+  isActive          Boolean  @default(true)
+  isFeatured        Boolean  @default(false)
+  stock             Int      @default(0)
+  preparationTime   Int      @default(15) // em minutos
+  ingredients       String[] @default([])
+  allergens         String[] @default([])
+  nutritionalInfo   Json?    // NutritionalInfo type
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  deletedAt         DateTime?
+
+  // Relacionamentos
+  category          Category @relation(fields: [categoryId], references: [id])
+  orderItems        OrderItem[]
+  
+  @@index([categoryId])
+  @@index([isActive])
+  @@index([isFeatured])
+  @@index([price])
+  @@map("products")
+}
+
+model Order {
+  id                  String         @id @default(cuid())
+  userId              String
+  status              OrderStatus    @default(PENDING)
+  paymentStatus         PaymentStatus  @default(PENDING)
+  paymentMethod       PaymentMethod
+  totalAmount         Decimal        @db.Decimal(10, 2)
+  subtotal            Decimal        @db.Decimal(10, 2)
+  tax                 Decimal        @db.Decimal(10, 2) @default(0)
+  deliveryFee         Decimal        @db.Decimal(10, 2) @default(0)
+  discount            Decimal        @db.Decimal(10, 2) @default(0)
+  deliveryAddress     Json           // Address type
+  deliveryInstructions String?
+  scheduledFor        DateTime?
+  estimatedDeliveryTime DateTime?
+  notes               String?
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+  deletedAt           DateTime?
+
+  // Relacionamentos
+  user                User           @relation(fields: [userId], references: [id])
+  items               OrderItem[]
+  payment             Payment?
+  
+  @@index([userId])
+  @@index([status])
+  @@index([paymentStatus])
+  @@index([createdAt])
+  @@map("orders")
+}
+
+model OrderItem {
+  id           String  @id @default(cuid())
+  orderId      String
+  productId    String
+  productName  String
+  productPrice Decimal @db.Decimal(10, 2)
+  quantity     Int
+  notes        String?
+  subtotal     Decimal @db.Decimal(10, 2)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relacionamentos
+  order        Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product      Product @relation(fields: [productId], references: [id])
+  
+  @@index([orderId])
+  @@index([productId])
+  @@map("order_items")
+}
+
+model Payment {
+  id              String         @id @default(cuid())
+  orderId         String         @unique
+  amount          Decimal        @db.Decimal(10, 2)
+  method          PaymentMethod
+  status          PaymentStatus  @default(PENDING)
+  transactionId   String?
+  gatewayResponse Json?
+  paidAt          DateTime?
+  refundedAt      DateTime?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  // Relacionamentos
+  order           Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  
+  @@index([orderId])
+  @@index([status])
+  @@index([transactionId])
+  @@map("payments")
+}
+
+// Enums
+enum UserRole {
+  ADMIN
+  CUSTOMER
+  STAFF
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PREPARING
+  READY
+  OUT_FOR_DELIVERY
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  REFUNDED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  CREDIT_CARD
+  DEBIT_CARD
+  PIX
+  CASH
+  DIGITAL_WALLET
+}

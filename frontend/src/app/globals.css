@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary-red: #DC2626;
+  --primary-red-dark: #B91C1C;
+  --primary-red-light: #EF4444;
+  --accent-yellow: #F59E0B;
+  --accent-yellow-light: #FCD34D;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary-red: var(--primary-red);
+  --color-primary-red-dark: var(--primary-red-dark);
+  --color-primary-red-light: var(--primary-red-light);
+  --color-accent-yellow: var(--accent-yellow);
+  --color-accent-yellow-light: var(--accent-yellow-light);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Estilos personalizados Vai Coxinha */
+.bg-vai-coxinha-red {
+  background-color: var(--primary-red);
+}
+
+.bg-vai-coxinha-red-dark {
+  background-color: var(--primary-red-dark);
+}
+
+.bg-vai-coxinha-red-light {
+  background-color: var(--primary-red-light);
+}
+
+.text-vai-coxinha-red {
+  color: var(--primary-red);
+}
+
+.border-vai-coxinha-red {
+  border-color: var(--primary-red);
+}
+
+.hover\:bg-vai-coxinha-red-dark:hover {
+  background-color: var(--primary-red-dark);
+}

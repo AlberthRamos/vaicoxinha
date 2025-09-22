@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Fundo circular vermelho -->
+  <circle cx="50" cy="50" r="48" fill="#DC2626"/>
+  
+  <!-- Contorno da coxinha -->
+  <path d="M50 20 Q30 25 25 45 Q25 65 35 75 Q45 85 50 85 Q55 85 65 75 Q75 65 75 45 Q70 25 50 20" fill="#F59E0B"/>
+  
+  <!-- Detalhes da coxinha -->
+  <path d="M35 45 Q40 40 45 45 Q50 50 55 45 Q60 40 65 45" fill="#D97706" stroke="#92400E" stroke-width="1"/>
+  
+  <!-- Texto VAI -->
+  <text x="50" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">VAI</text>
+</svg>

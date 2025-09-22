@@ -1,1 +1,5 @@
-"use strict";(()=>{var e={};e.id=660,e.ids=[660,888],e.modules={2785:e=>{e.exports=require("next/dist/compiled/next-server/pages.runtime.prod.js")},6689:e=>{e.exports=require("react")},1017:e=>{e.exports=require("path")}};var r=require("../webpack-runtime.js");r.C(e);var __webpack_exec__=e=>r(r.s=e),s=r.X(0,[310,676],()=>__webpack_exec__(8676));module.exports=s})();
+var R=require("../chunks/ssr/[turbopack]_runtime.js")("server/pages/_document.js")
+R.c("server/chunks/ssr/283d9_be7b4fea._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__e6a4d965._.js")
+R.m("[project]/Desktop/Vai Coxinha/vai-coxinha/Frontend/node_modules/next/document.js [ssr] (ecmascript)")
+module.exports=R.m("[project]/Desktop/Vai Coxinha/vai-coxinha/Frontend/node_modules/next/document.js [ssr] (ecmascript)").exports

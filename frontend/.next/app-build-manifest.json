@@ -1,67 +1,64 @@
 {
   "pages": {
-    "/_not-found": [
-      "static/chunks/webpack-644f15a28f634c8b.js",
-      "static/chunks/vendors-ef299ba9ba7228ed.js",
-      "static/chunks/main-app-87f60986bc498fd3.js",
-      "static/chunks/app/_not-found-904eefb9b1c176dd.js"
-    ],
-    "/layout": [
-      "static/chunks/webpack-644f15a28f634c8b.js",
-      "static/chunks/vendors-ef299ba9ba7228ed.js",
-      "static/chunks/main-app-87f60986bc498fd3.js",
-      "static/chunks/common-e7c74b27ef5217d8.js",
-      "static/css/d2395b52b1886aac.css",
-      "static/chunks/app/layout-dd344b4ba8013474.js"
-    ],
-    "/acompanhamento/page": [
-      "static/chunks/webpack-644f15a28f634c8b.js",
-      "static/chunks/vendors-ef299ba9ba7228ed.js",
-      "static/chunks/main-app-87f60986bc498fd3.js",
-      "static/chunks/common-e7c74b27ef5217d8.js",
-      "static/chunks/app/acompanhamento/page-e659cc15154303bc.js"
+    "/cardapio/page": [
+      "static/chunks/283d9_next_dist_a358b4c7._.js",
+      "static/chunks/Desktop_Vai Coxinha_vai-coxinha_Frontend_src_app_favicon_ico_mjs_d6ea91e4._.js",
+      "static/chunks/Desktop_Vai Coxinha_vai-coxinha_Frontend_src_1bc13538._.js",
+      "static/chunks/283d9_d757af9d._.js",
+      "static/chunks/Desktop_Vai Coxinha_vai-coxinha_Frontend_src_app_globals_972fe316.css",
+      "static/chunks/Desktop_Vai Coxinha_vai-coxinha_Frontend_src_app_layout_tsx_097d8203._.js",
+      "static/chunks/283d9_next_dist_client_components_builtin_global-error_5a9cd563.js",
+      "static/chunks/Desktop_Vai Coxinha_vai-coxinha_Frontend_src_fb29a957._.js",
+      "static/chunks/283d9_868fbfab._.js",
+      "static/chunks/Desktop_Vai Coxinha_vai-coxinha_Frontend_src_app_cardapio_page_tsx_5a9cd563._.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_5d44a2e3._.js",
+      "static/chunks/283d9_next_dist_compiled_react-dom_28df721a._.js",
+      "static/chunks/283d9_next_dist_compiled_next-devtools_index_1b51193e.js",
+      "static/chunks/283d9_next_dist_compiled_94beec14._.js",
+      "static/chunks/283d9_next_dist_client_9e6c8d46._.js",
+      "static/chunks/283d9_next_dist_c76993b2._.js",
+      "static/chunks/283d9_@swc_helpers_cjs_58c7697c._.js",
+      "static/chunks/Desktop_Vai Coxinha_vai-coxinha_Frontend_a0ff3932._.js",
+      "static/chunks/turbopack-Desktop_Vai Coxinha_vai-coxinha_Frontend_5b580dff._.js"
     ],
     "/carrinho/page": [
-      "static/chunks/webpack-644f15a28f634c8b.js",
-      "static/chunks/vendors-ef299ba9ba7228ed.js",
-      "static/chunks/main-app-87f60986bc498fd3.js",
-      "static/chunks/common-e7c74b27ef5217d8.js",
-      "static/chunks/app/carrinho/page-40c48aa0bd2b146a.js"
-    ],
-    "/admin/dashboard/page": [
-      "static/chunks/webpack-644f15a28f634c8b.js",
-      "static/chunks/vendors-ef299ba9ba7228ed.js",
-      "static/chunks/main-app-87f60986bc498fd3.js",
-      "static/chunks/common-e7c74b27ef5217d8.js",
-      "static/chunks/app/admin/dashboard/page-be850122f8f8e955.js"
-    ],
-    "/test/admin-dashboard/page": [
-      "static/chunks/webpack-644f15a28f634c8b.js",
-      "static/chunks/vendors-ef299ba9ba7228ed.js",
-      "static/chunks/main-app-87f60986bc498fd3.js",
-      "static/chunks/common-e7c74b27ef5217d8.js",
-      "static/chunks/app/test/admin-dashboard/page-bb133091a2a03ce0.js"
-    ],
-    "/checkout/page": [
-      "static/chunks/webpack-644f15a28f634c8b.js",
-      "static/chunks/vendors-ef299ba9ba7228ed.js",
-      "static/chunks/main-app-87f60986bc498fd3.js",
-      "static/chunks/common-e7c74b27ef5217d8.js",
-      "static/chunks/app/checkout/page-7aa763a6d0b8044a.js"
-    ],
-    "/test/integration-test/page": [
-      "static/chunks/webpack-644f15a28f634c8b.js",
-      "static/chunks/vendors-ef299ba9ba7228ed.js",
-      "static/chunks/main-app-87f60986bc498fd3.js",
-      "static/chunks/common-e7c74b27ef5217d8.js",
-      "static/chunks/app/test/integration-test/page-440b50bcbd7c62b8.js"
+      "static/chunks/283d9_next_dist_a358b4c7._.js",
+      "static/chunks/Desktop_Vai Coxinha_vai-coxinha_Frontend_src_app_favicon_ico_mjs_d6ea91e4._.js",
+      "static/chunks/Desktop_Vai Coxinha_vai-coxinha_Frontend_src_1bc13538._.js",
+      "static/chunks/283d9_d757af9d._.js",
+      "static/chunks/Desktop_Vai Coxinha_vai-coxinha_Frontend_src_app_globals_972fe316.css",
+      "static/chunks/Desktop_Vai Coxinha_vai-coxinha_Frontend_src_app_layout_tsx_097d8203._.js",
+      "static/chunks/283d9_next_dist_client_components_builtin_global-error_5a9cd563.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_5d44a2e3._.js",
+      "static/chunks/283d9_next_dist_compiled_react-dom_28df721a._.js",
+      "static/chunks/283d9_next_dist_compiled_next-devtools_index_1b51193e.js",
+      "static/chunks/283d9_next_dist_compiled_94beec14._.js",
+      "static/chunks/283d9_next_dist_client_9e6c8d46._.js",
+      "static/chunks/283d9_next_dist_c76993b2._.js",
+      "static/chunks/283d9_@swc_helpers_cjs_58c7697c._.js",
+      "static/chunks/Desktop_Vai Coxinha_vai-coxinha_Frontend_a0ff3932._.js",
+      "static/chunks/turbopack-Desktop_Vai Coxinha_vai-coxinha_Frontend_5b580dff._.js"
     ],
     "/page": [
-      "static/chunks/webpack-644f15a28f634c8b.js",
-      "static/chunks/vendors-ef299ba9ba7228ed.js",
-      "static/chunks/main-app-87f60986bc498fd3.js",
-      "static/chunks/common-e7c74b27ef5217d8.js",
-      "static/chunks/app/page-55285c4565dde9d0.js"
+      "static/chunks/283d9_next_dist_a358b4c7._.js",
+      "static/chunks/Desktop_Vai Coxinha_vai-coxinha_Frontend_src_app_favicon_ico_mjs_d6ea91e4._.js",
+      "static/chunks/Desktop_Vai Coxinha_vai-coxinha_Frontend_src_1bc13538._.js",
+      "static/chunks/283d9_d757af9d._.js",
+      "static/chunks/Desktop_Vai Coxinha_vai-coxinha_Frontend_src_app_globals_972fe316.css",
+      "static/chunks/Desktop_Vai Coxinha_vai-coxinha_Frontend_src_app_layout_tsx_097d8203._.js",
+      "static/chunks/283d9_next_dist_client_components_builtin_global-error_5a9cd563.js",
+      "static/chunks/Desktop_Vai Coxinha_vai-coxinha_Frontend_src_2e3a98dd._.js",
+      "static/chunks/283d9_4e0f09ab._.js",
+      "static/chunks/Desktop_Vai Coxinha_vai-coxinha_Frontend_src_app_page_tsx_5a9cd563._.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_5d44a2e3._.js",
+      "static/chunks/283d9_next_dist_compiled_react-dom_28df721a._.js",
+      "static/chunks/283d9_next_dist_compiled_next-devtools_index_1b51193e.js",
+      "static/chunks/283d9_next_dist_compiled_94beec14._.js",
+      "static/chunks/283d9_next_dist_client_9e6c8d46._.js",
+      "static/chunks/283d9_next_dist_c76993b2._.js",
+      "static/chunks/283d9_@swc_helpers_cjs_58c7697c._.js",
+      "static/chunks/Desktop_Vai Coxinha_vai-coxinha_Frontend_a0ff3932._.js",
+      "static/chunks/turbopack-Desktop_Vai Coxinha_vai-coxinha_Frontend_5b580dff._.js"
     ]
   }
 }

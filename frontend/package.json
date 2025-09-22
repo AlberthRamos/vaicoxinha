@@ -1,45 +1,31 @@
 {
-  "name": "vai-coxinha-frontend",
+  "name": "site",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
     "start": "next start",
-    "lint": "next lint",
-    "analyze": "cross-env ANALYZE=true next build",
-    "type-check": "tsc --noEmit"
+    "lint": "eslint"
   },
   "dependencies": {
-    "next": "14.0.0",
-    "next-pwa": "^5.6.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "framer-motion": "^10.16.0",
-    "lucide-react": "^0.294.0",
-    "tailwind-merge": "^2.0.0",
-    "clsx": "^2.0.0",
-    "@hookform/resolvers": "^3.3.0",
-    "react-hook-form": "^7.47.0",
-    "zod": "^3.22.0",
-    "axios": "^1.6.0",
-    "react-hot-toast": "^2.4.0",
-    "qrcode": "^1.5.3",
-    "inter": "^1.0.0"
+    "axios": "^1.12.2",
+    "critters": "^0.0.23",
+    "framer-motion": "^12.23.16",
+    "lucide-react": "^0.544.0",
+    "next": "15.5.3",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "@types/node": "^20.8.0",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "autoprefixer": "^10.4.16",
-    "eslint": "^8.51.0",
-    "eslint-config-next": "14.0.0",
-    "postcss": "^8.4.31",
-    "tailwindcss": "^3.3.5",
-    "typescript": "^5.2.2",
-    "@tailwindcss/forms": "^0.5.7",
-    "@tailwindcss/typography": "^0.5.10",
-    "@tailwindcss/aspect-ratio": "^0.4.2",
-    "cross-env": "^7.0.3"
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.3",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }

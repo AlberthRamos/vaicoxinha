@@ -1,0 +1,16 @@
+# Robots.txt para Vai Coxinha
+# Permite todos os crawlers
+User-agent: *
+Allow: /
+
+# Bloqueia páginas de admin e API interna
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /private/
+
+# Define o atraso entre requisições (em segundos)
+Crawl-delay: 1
+
+# Especifica o local do sitemap
+Sitemap: https://vaicoxinha.com.br/sitemap.xml

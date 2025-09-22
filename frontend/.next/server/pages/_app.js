@@ -1,1 +1,4 @@
-"use strict";(()=>{var e={};e.id=888,e.ids=[888],e.modules={6689:e=>{e.exports=require("react")}};var r=require("../webpack-runtime.js");r.C(e);var __webpack_exec__=e=>r(r.s=e),_=r.X(0,[310,840],()=>__webpack_exec__(2840));module.exports=_})();
+var R=require("../chunks/ssr/[turbopack]_runtime.js")("server/pages/_app.js")
+R.c("server/chunks/ssr/[root-of-the-server]__e4dbc7e3._.js")
+R.m("[project]/Desktop/Vai Coxinha/vai-coxinha/Frontend/node_modules/next/app.js [ssr] (ecmascript)")
+module.exports=R.m("[project]/Desktop/Vai Coxinha/vai-coxinha/Frontend/node_modules/next/app.js [ssr] (ecmascript)").exports
